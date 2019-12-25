@@ -1,0 +1,33 @@
+<%- include("./partials/head.ejs") %>
+
+<body>
+    <div class="container">
+        <%- include ('partials/nav') %>
+        <h2 class="page-header pt-4">Login</h2>
+        <p>Please login below</p>
+
+        <%- include ('./partials/messages') %>
+        <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
+        <form method="post" action="/user/loginuser">
+            <div class="form-group">
+                <label>Username</label>
+                <input name="username" type="text" placeholder="Enter Username" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input name="password" type="password" placeholder="Enter Password" class="form-control">
+            </div>
+            <div class="text-right">
+                <input type="submit" name="submit" value="Login" class="btn btn-primary" id="loginBtn">
+            </div>
+        </form>
+        <div class="pt-4 text-center">
+            <p> No Account? <a class="nav-link" href="/user/register">Register</a> </p>
+        </div>
+    </div>
+    <%- include("./partials/end.ejs") %>
+</body>
+
+</html>

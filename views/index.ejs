@@ -1,0 +1,44 @@
+<%- include("./partials/head.ejs") %>
+
+<body>
+    <%- include ('partials/nav') %>
+    <div class="container pt-4">
+        <div class="lists">
+            <h2>Restaurants</h2>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Filter
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Best rating</a>
+                <a class="dropdown-item" href="#">Category</a>
+            </div>
+        </div>
+
+        <hr>
+        <ul class="listings">
+            <% for(data of datas) { %>
+            <li class="lists" id="<%= data.id %>">
+                <p class="image"><img src="<%= data.image %>" width="150px"></p>
+                <div class="list-details">
+                    <h3><a href="<%= data.url %>"><%= data.name %></a> </h3>
+                    <p class=" lead"><strong>rating :</strong> <%= data.rating %></p>
+                    <p class=" lead"><strong>Price :</strong> <%= data.price %></p>
+                    <p class=" lead"><strong>Category :</strong> <%= data.category %></p>
+                </div>
+                <div class="list-details  pl-5 ">
+                    <p class="lead"><strong>Location :</strong> <%= data.location %></p>
+                    <p class=" lead"><strong>Phone :</strong> <%= data.phonenumber %></p>
+                </div>
+                <% if(user){%>
+                <div class="listing-bottom align-bottom">
+                    <a href=" " class="btn btn-info" role="buttom">Write a Review</a>
+                </div>
+                <% } %>
+            </li>
+            <hr>
+            <% } %>
+        </ul>
+    </div>
+    <%- include("./partials/end.ejs") %>
+</body>

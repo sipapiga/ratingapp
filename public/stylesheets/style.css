@@ -1,0 +1,14 @@
+body{
+    margin: 50px;
+}
+.lists{
+    display: flex;
+    justify-content: space-between;
+}
+.lists img{
+    height: 170px;
+    width: 220px;
+}
+.listing-bottom{
+    align-items: flex-end;
+}
