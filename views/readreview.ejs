@@ -1,0 +1,83 @@
+<%- include("./partials/head.ejs") %>
+
+<body>
+    <%- include ('partials/nav') %>
+    <div class="container pt-4">
+        <div class="review-list">
+            <% if(data.length > 0) {%>
+            <h3><%= data[0].name %> </h3>
+            <% }%>
+        </div>
+        <hr>
+        <div class="col-md-12">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="count">
+                        <h1>
+                            <%= data.length %>
+                        </h1>
+                        <h2>Ratings</h2>
+                        <h3>Total ratings received</h3>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="count">
+                        <h1>
+                            <%= star %>
+                        </h1>
+                        <h2>Total Stars</h2>
+                        <h3>Total stars received</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="count">
+                        <h1>
+                            <h1>
+                                <div class="stars-outer">
+                                    <div class="stars-inner"></div>
+                                </div>
+                                <span class="star" data-score="<%= rating %>"></span>
+                            </h1>
+                        </h1>
+                        <% if(rating !== NaN > 0) {%>
+                        <h2>Average Rating ( <%= rating %> )</h2>
+                        <% }%>
+                        <h3>Based on <%= data.length %> reviews</h3>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-12 header pt-4">
+                <h2>Reviews <%= data.length %></h2>
+                <% if(data.length > 0) {%>
+                <% data.forEach(function(val){ %>
+                <div class="col-md-12 reviewDiv">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1>
+                                <%= val.reviewer %>
+                            </h1>
+                            <p><%= val.review %></p>
+                        </div>
+
+                        <div class="col-md-2" style="width:150px">
+                            <h1>Rating</h1>
+                            <div class="stars-outer">
+                                <div class="stars-inner"></div>
+                            </div>
+                            <span class="star" data-score="<%= val.userrating %>"><%= val.userrating %></span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <% })%>
+                <% }%>
+
+            </div>
+        </div>
+    </div>
+    <%- include("./partials/end.ejs") %>
+</body>

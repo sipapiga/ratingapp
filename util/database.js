@@ -3,7 +3,6 @@ const router = express.Router();
 const dotenv = require("dotenv");
 const yelp = require('yelp-fusion');
 const mysql = require('mysql');
-const util = require('util');
 
 dotenv.config();
 const client = yelp.client(process.env.API_KEY);
@@ -36,8 +35,14 @@ db.query(useDB, (err, result) => {
     console.log(result);
 }) */
 
-let sqltable = 'CREATE TABLE IF NOT EXISTS restaurang(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,location varchar(255) NOT NULL, price varchar(255) , rating int(20) NOT NULL,image varchar(255) NOT NULL,url varchar(255) NOT NULL,phonenumber  varchar(255)  NOT NULL,category  varchar(255)  NOT NULL,PRIMARY KEY (id))';
+let sqltable = 'CREATE TABLE IF NOT EXISTS restaurang(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,location varchar(255) NOT NULL, price varchar(255) , rating int(20) NOT NULL,review  varchar(255) ,image varchar(255) NOT NULL,url varchar(255) NOT NULL,phonenumber  varchar(255)  NOT NULL,category  varchar(255)  NOT NULL,PRIMARY KEY (id))';
 db.query(sqltable, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+});
+
+let sqltableReview = 'CREATE TABLE IF NOT EXISTS review(id int(5) NOT NULL AUTO_INCREMENT,name varchar(255),review varchar(255) NOT NULL,restaurang_id int ,rating int(20) NOT NULL, PRIMARY KEY (id))';
+db.query(sqltableReview, (err, result) => {
     if (err) throw err;
     console.log(result);
 });

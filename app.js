@@ -16,6 +16,7 @@ const app = express();
 
 const indexRoutes = require("./routes/index");
 const usersRouter = require('./routes/users');
+const reviewRouter = require('./routes/review');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRoutes);
 app.use('/user', usersRouter);
+app.use('/restaurang', reviewRouter);
 
 const port = process.env.PORT || 3000;
 
