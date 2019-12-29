@@ -3,12 +3,12 @@ const router = express.Router();
 
 const db = require('../util/database');
 
-router.get('/index', (req, res) => {
+router.get('/', (req, res) => {
     //get restautant data from db
     let sqldata = 'SELECT * FROM restaurang';
     db.query(sqldata, (err, result) => {
         if (err) throw err;
-        res.send(result);
+        res.render('index', { datas: result, title: 'home' });
     })
 });
 

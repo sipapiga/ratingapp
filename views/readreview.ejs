@@ -39,12 +39,16 @@
                                 <div class="stars-outer">
                                     <div class="stars-inner"></div>
                                 </div>
-                                <span class="star" data-score="<%= rating %>"></span>
+                                <span id="star" data-score="<%= rating %>"></span>
                             </h1>
                         </h1>
-                        <% if(rating !== NaN > 0) {%>
+                        <% if(!isNaN(rating)) {%>
                         <h2>Average Rating ( <%= rating %> )</h2>
-                        <% }%>
+
+                        <% }else{%>
+                        <h2>Average Rating 0</h2>
+                        <% } %>
+
                         <h3>Based on <%= data.length %> reviews</h3>
                     </div>
                 </div>
@@ -65,10 +69,14 @@
 
                         <div class="col-md-2" style="width:150px">
                             <h1>Rating</h1>
-                            <div class="stars-outer">
-                                <div class="stars-inner"></div>
+                            <div class="userRating">
+                                <div class="stars-outer">
+                                    <div class="stars-inner" style="width: <%= (val.userrating * 10 / 10) * 20 %>%">
+                                    </div>
+                                </div>
+                                <span class="star" data-score="<%= val.userrating %>"><%= val.userrating %></span>
+
                             </div>
-                            <span class="star" data-score="<%= val.userrating %>"><%= val.userrating %></span>
                         </div>
                     </div>
                     <hr>

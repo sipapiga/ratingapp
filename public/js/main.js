@@ -15,13 +15,14 @@ $(document).ready(function () {
                         <h3><a href="/restaurang/${data.id}"> ${data.name}</a></h3>
                         <p class=" lead"><strong>rating :</strong> ${data.rating}</p>
                         <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                            </div>
+                        <div class="stars-inner"></div>
+                    </div>              
+                    <span class="star" data-score= ${data.rating}></span>
                         <p class=" lead pt-2"><strong>Price :</strong> ${data.price}</p>
-                        <p class=" lead"><strong>Category :</strong>${data.category}</p>
+                        <p class=" lead"><strong>Category : </strong>${data.category}</p>
                     </div>
                     <div class="list-details  pl-5 ">
-                        <p class="lead"><strong>Location :</strong>${data.location}</p>
+                        <p class="lead"><strong>Location : </strong>${data.location}</p>
                         <p class=" lead"><strong>Phone :</strong> ${data.phonenumber}</p>
                     </div>
                      <div class="listing-bottom align-bottom">
@@ -30,7 +31,12 @@ $(document).ready(function () {
             </li>
             <hr>`;
         }
-
     }
+
+    /*     const average = document.querySelectorAll('.star');
+        console.log(average);
+        let starPercentage = average.dataset.score * 10;
+        starPercentageRounded = `${Math.round(starPercentage / 10) * 20}%`;
+        document.querySelector('.stars-inner').style.width = starPercentageRounded; */
 
 });

@@ -13,11 +13,14 @@ router.get('/:id', (req, res) => {
             star += row.userrating;
         });
         average = star / rows.length;
-        let sqlrating = 'UPDATE restaurang SET rating = ? WHERE id = ?;'
-        db.query(sqlrating, [average, req.params.id], function (err, rows) {
-            if (err) throw err;
-            console.log(rows);
-        });
+        if (!isNaN(average)) {
+            let sqlrating = 'UPDATE restaurang SET rating = ? WHERE id = ?;'
+            db.query(sqlrating, [average, req.params.id], function (err, rows) {
+                if (err) throw err;
+                console.log(rows);
+            });
+
+        }
         res.render('readreview', { title: 'home', data: rows, rating: average, star: star });
     });
 });
@@ -50,7 +53,7 @@ router.post('/review/:id', async (req, res) => {
         res.status(400).send({ error: error.details[0].message });
     }
 
-    res.redirect(`/restaurang/${req.params.id}`);
+    //res.redirect(`/restaurang/${req.params.id}`);
 });
 
 

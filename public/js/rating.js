@@ -1,9 +1,11 @@
 $(document).ready(function () {
     const rate = document.querySelector('#rate');
     const review = document.querySelector('#review');
-    const average = document.querySelector('.star');
-    if (average !== null) {
+    const average = document.querySelector('#star');
+    const averageUser = document.querySelectorAll('.star');
+    let starPercentageRounded = 0;
 
+    if (average !== null) {
         let starPercentage = average.dataset.score * 10;
         starPercentageRounded = `${Math.round(starPercentage / 10) * 20}%`;
         document.querySelector('.stars-inner').style.width = starPercentageRounded;
@@ -11,7 +13,7 @@ $(document).ready(function () {
 
     let clickedValue = 0;
 
-    $('#1_star').hover(function () {
+    $('#1_star').click(function () {
         $('#1_star').css('color', 'orange');
         $('#2_star').css('color', 'black');
         $('#3_star').css('color', 'black');
@@ -25,7 +27,7 @@ $(document).ready(function () {
         console.log(clickedValue)
     });
 
-    $('#2_star').hover(function () {
+    $('#2_star').click(function () {
         $('#1_star').css('color', 'orange');
         $('#2_star').css('color', 'orange');
         $('#3_star').css('color', 'black');
@@ -39,7 +41,7 @@ $(document).ready(function () {
 
         console.log(clickedValue)
     })
-    $('#3_star').hover(function () {
+    $('#3_star').click(function () {
         $('#1_star').css('color', 'orange');
         $('#2_star').css('color', 'orange');
         $('#3_star').css('color', 'orange');
@@ -53,7 +55,7 @@ $(document).ready(function () {
         console.log(clickedValue)
     })
 
-    $('#4_star').hover(function () {
+    $('#4_star').click(function () {
         $('#1_star').css('color', 'orange');
         $('#2_star').css('color', 'orange');
         $('#3_star').css('color', 'orange');
@@ -67,7 +69,7 @@ $(document).ready(function () {
         console.log(clickedValue)
     })
 
-    $('#5_star').hover(function () {
+    $('#5_star').click(function () {
         $('#1_star').css('color', 'orange');
         $('#2_star').css('color', 'orange');
         $('#3_star').css('color', 'orange');
@@ -83,7 +85,8 @@ $(document).ready(function () {
 
 
     if (rate !== null) {
-        rate.addEventListener('click', function () {
+        rate.addEventListener('click', function (event) {
+
             const reviewValue = review.value;
             const reviewer = document.querySelector('#reviewer').value;
             const id = document.querySelector('#id').value;
@@ -94,12 +97,15 @@ $(document).ready(function () {
 
             if (clickedValue === 0 || clickedValue > 5) {
                 valid = false;
+
                 $('#error').html('<div class="alert alert-dnger">Please give a rating and review before you submit.</div>');
             } else {
+
                 $('#error').html('');
             }
 
             if (valid === true) {
+
                 axios({
                     method: 'post',
                     url: 'http://localhost:3000/restaurang/review/' + id,
@@ -116,6 +122,11 @@ $(document).ready(function () {
             }
 
             console.log(reviewValue);
+            event.preventDefault();
+            setTimeout(function () {
+                window.location.href = "http://localhost:3000/restaurang/" + id
+            }, 1500);
+
         })
     }
 });
