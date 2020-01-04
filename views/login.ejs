@@ -10,7 +10,7 @@
         <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
         <% } %>
-        <form method="post" action="/user/loginuser">
+        <form method="post" action="/users/loginuser">
             <div class="form-group">
                 <label>Username</label>
                 <input name="username" type="text" placeholder="Enter Username" class="form-control">
@@ -24,7 +24,7 @@
             </div>
         </form>
         <div class="pt-4 text-center">
-            <p> No Account? <a class="nav-link" href="/user/register">Register</a> </p>
+            <p> No Account? <a class="nav-link" href="/users/register">Register</a> </p>
         </div>
     </div>
     <%- include("./partials/end.ejs") %>

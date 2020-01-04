@@ -35,7 +35,7 @@ db.query(useDB, (err, result) => {
     console.log(result);
 }) */
 
-let sqltable = 'CREATE TABLE IF NOT EXISTS restaurang(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,location varchar(255) NOT NULL, price varchar(255) , rating int(20) NOT NULL,review  varchar(255) ,image varchar(255) NOT NULL,url varchar(255) NOT NULL,phonenumber  varchar(255)  NOT NULL,category  varchar(255)  NOT NULL,PRIMARY KEY (id))';
+let sqltable = 'CREATE TABLE IF NOT EXISTS restaurang(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,location varchar(255) NOT NULL, price varchar(255) , rating int(20),image varchar(255),url varchar(255),phonenumber  varchar(255),category  varchar(255),PRIMARY KEY (id))';
 db.query(sqltable, (err, result) => {
     if (err) throw err;
     console.log(result);

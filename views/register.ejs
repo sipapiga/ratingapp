@@ -7,7 +7,7 @@
         <p>Please register using the form below</p>
         <%- include ('./partials/messages') %>
 
-        <form method="post" action="/user/register">
+        <form method="post" action="/users/register">
             <div class="form-group">
                 <label>Name</label>
                 <input name="name" type="text" placeholder="Enter Name" class="form-control">
@@ -33,7 +33,7 @@
             </div>
         </form>
         <div class="pt-4 text-center">
-            Have an accout? <a class="nav-link" href="/user/login">Login</a>
+            Have an accout? <a class="nav-link" href="/users/login">Login</a>
         </div>
     </div>
     <%- include("./partials/end.ejs") %>

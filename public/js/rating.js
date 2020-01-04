@@ -108,7 +108,7 @@ $(document).ready(function () {
 
                 axios({
                     method: 'post',
-                    url: 'http://localhost:3000/restaurang/review/' + id,
+                    url: 'http://localhost:3000/reviews/' + id,
                     data: {
                         clickedValue: clickedValue,
                         sender: reviewer,
@@ -124,7 +124,7 @@ $(document).ready(function () {
             console.log(reviewValue);
             event.preventDefault();
             setTimeout(function () {
-                window.location.href = "http://localhost:3000/restaurang/" + id
+                window.location.href = "http://localhost:3000/reviews/restaurant/" + id
             }, 1500);
 
         })

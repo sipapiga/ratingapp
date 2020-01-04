@@ -11,23 +11,23 @@
             <li class="<%= title == 'home' ? 'navbar-item active' : 'navbar-item' %>">
                 <a class="nav-link" href="/dashboard">Restaurants <span class="sr-only">(current)</span></a>
             </li>
-            <li class="<%= title == 'admin' ? 'navbar-item active' : 'navbar-item' %>">
+            <!--   <li class="<%= title == 'admin' ? 'navbar-item active' : 'navbar-item' %>">
                 <a class="nav-link" href="/admin">Admin </a>
-            </li>
+            </li> -->
             <% } %>
             <% if(!user){%>
             <li class="<%= title == 'register' ? 'navbar-item active' : 'navbar-item' %>">
-                <a class="nav-link" href="/user/register">Register</a>
+                <a class="nav-link" href="/users/register">Register</a>
             </li>
             <li class="<%= title == 'login' ? 'navbar-item active' : 'navbar-item' %>">
-                <a class="nav-link" href="/user/login">Login</a>
+                <a class="nav-link" href="/users/login">Login</a>
             </li>
             <% } %>
         </ul>
         <% if(user){%>
         <strong><%=user.name%></strong>
         <div class="pl-5">
-            <a class="btn btn-secondary my-2 my-sm-0" type="submit" role="button" href="/user/logout">Logout</a>
+            <a class="btn btn-secondary my-2 my-sm-0" type="submit" role="button" href="/users/logout">Logout</a>
         </div>
         <% } %>
     </div>

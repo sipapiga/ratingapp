@@ -5,13 +5,21 @@
     <div class="container pt-4">
         <div class="lists">
             <h2>Restaurants</h2>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                Filter
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Best rating</a>
-                <a class="dropdown-item" href="#">Category</a>
+            <div class="listing-bottom row">
+
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Filter
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/restaurants/best-resting">Best rating</a>
+                    <a class="dropdown-item" href="/restaurants/category">Category</a>
+                </div>
+                <div class="creteBtn pl-4">
+                    <% if(user){%>
+                    <a href="/restaurants" class="btn btn-info" role="buttom">Create new Restaurant</a>
+                    <% } %>
+                </div>
             </div>
         </div>
 
@@ -21,10 +29,10 @@
             <li class="lists" id="<%= data.id %>">
                 <p class="image"><img src="<%= data.image %>" width="150px"></p>
                 <div class="list-details">
-                    <h3><a href="/restaurang/<%= data.id %>"><%= data.name %></a> </h3>
+                    <h3><a href="/reviews/restaurant/<%= data.id %>"><%= data.name %></a> </h3>
                     <!--    <p class=" lead"><strong>rating :</strong> <%= data.rating %></p> -->
                     <div class="stars-outer">
-                        <div class="stars-inner" style="width: <%= (data.rating * 10 / 10) * 20 %>%"></div>
+                        <div class="stars-inner" style='width:<%= (data.rating * 10 / 10) * 20 %>%''></div>
                     </div>
                     <span class="star" data-score=${data.rating}></span>
                     <p class=" lead pt-2"><strong>Price :</strong> <%= data.price %></p>
@@ -36,7 +44,7 @@
                 </div>
                 <% if(user){%>
                 <div class="listing-bottom align-bottom">
-                    <a href="/restaurang/review/<%= data.id %>" class="btn btn-info" role="buttom">Write a Review</a>
+                    <a href="/reviews/<%= data.id %>" class="btn btn-info" role="buttom">Write a Review</a>
                 </div>
                 <% }else{ %>
                 <div class="listing-bottom align-bottom">

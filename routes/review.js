@@ -3,7 +3,7 @@ const router = express.Router();
 
 const db = require('../util/database');
 //Read
-router.get('/:id', (req, res) => {
+router.get('/restaurant/:id', (req, res) => {
     let star = 0;
     let average = 0;
     let sql = 'SELECT * FROM review INNER JOIN restaurang ON review.restaurang_id = restaurang.id WHERE restaurang.id=?';
@@ -12,6 +12,7 @@ router.get('/:id', (req, res) => {
         rows.forEach((row) => {
             star += row.userrating;
         });
+        //antalet star / antalet reviews
         average = star / rows.length;
         if (!isNaN(average)) {
             let sqlrating = 'UPDATE restaurang SET rating = ? WHERE id = ?;'
@@ -21,11 +22,11 @@ router.get('/:id', (req, res) => {
             });
 
         }
-        res.render('readreview', { title: 'home', data: rows, rating: average, star: star });
+        res.status(200).render('readreview', { title: 'home', data: rows, rating: average, star: star });
     });
 });
 
-router.get('/review/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     db.query('select * from restaurang where id = ? ', [req.params.id], function (err, rows) {
         if (err) throw err;
         res.status(200).render('review', { title: 'home', data: rows[0], user: req.user });
@@ -33,7 +34,7 @@ router.get('/review/:id', (req, res) => {
 
 });
 //Create
-router.post('/review/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
     console.log(req.body);
     let sql = 'INSERT INTO review SET ?';
     const review = {

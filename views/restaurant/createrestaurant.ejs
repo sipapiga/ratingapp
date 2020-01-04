@@ -1,0 +1,50 @@
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <div class="container">
+        <%- include ('../partials/nav') %>
+        <h2 class="page-header pt-4">Add a restaurant</h2>
+        <%- include ('../partials/messages') %>
+
+        <form method="post" action="/restaurants">
+            <div class="form-group">
+                <label>Restaurant Name</label>
+                <input name="name" type="text" placeholder="Espresso House" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input name="location" type="text" placeholder="Sveavägen 90" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input name="price" type="text" placeholder="$$$" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input name="phonenumber" type="text" placeholder="+46 8 662 30 60" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input name="image" type="text"
+                    placeholder="https://s3-media0.fl.yelpcdn.com/bphoto/SrS45KHpZ942yCdWMoITzA/o.jpg"
+                    class="form-control">
+                <small class="form-text text-muted">
+                    Obs: only url!!!
+                </small>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <input name="category" type="text" placeholder="Enter one category" class="form-control">
+                <small class="form-text text-muted">
+                    t.ex Scandinavian, Swedish, Korean, Thai, Modern European ...
+                </small>
+            </div>
+            <div class="text-right pb-4">
+                <input type="submit" value="Add restaurant" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <%- include("../partials/end.ejs") %>
+</body>
+
+</html>

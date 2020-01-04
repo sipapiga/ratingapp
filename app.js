@@ -15,8 +15,9 @@ const app = express();
 
 
 const indexRoutes = require("./routes/index");
-const usersRouter = require('./routes/users');
-const reviewRouter = require('./routes/review');
+const usersRoutes = require('./routes/users');
+const reviewRoutes = require('./routes/review');
+const restaurantRoutes = require('./routes/restaurant');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -53,8 +54,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRoutes);
-app.use('/user', usersRouter);
-app.use('/restaurang', reviewRouter);
+app.use('/users', usersRoutes);
+app.use('/reviews', reviewRoutes);
+app.use('/restaurants', restaurantRoutes);
 
 const port = process.env.PORT || 3000;
 
