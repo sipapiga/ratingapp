@@ -23,6 +23,8 @@ router.get('/register', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+    //  res.sendFile(__dirname + '/public/login.html');
+
     res.render('login', { title: 'login', message: req.flash('loginMessage') });
 });
 

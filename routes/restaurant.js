@@ -1,5 +1,17 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: './public/uploads/',
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '_' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({
+    storage: storage,
+});
 
 const Joi = require('@hapi/joi');
 
@@ -9,7 +21,6 @@ function validationError(data) {
         price: Joi.string().required(),
         phonenumber: Joi.string().required(),
         location: Joi.string().required(),
-        image: Joi.string().required(),
         category: Joi.string().required(),
     });
     return schema.validate(data);
@@ -20,22 +31,31 @@ router.get('/', (req, res) => {
     res.render('restaurant/createrestaurant', { title: 'home' });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     console.log(req.body);
     let { error } = await validationError(req.body);
     if (error) {
         res.render('restaurant/createrestaurant', { error: error.details[0].message, title: 'home' });
     } else {
+        if (req.file) {
+            console.log(req.file);
+            console.log('Uploading file...');
+            var profileimage = req.file.filename;
+        } else {
+            console.log('No file upload...');
+            var profileimage = 'noimage.jpg';
+        }
+        let sql = 'INSERT INTO restaurang SET ?';
+        const restaurang = {
+            name: req.body.name,
+            price: req.body.price,
+            phonenumber: req.body.phonenumber,
+            location: req.body.location,
+            image: profileimage,
+            category: req.body.category
+        };
         try {
-            let sql = 'INSERT INTO restaurang SET ?';
-            const restaurang = {
-                name: req.body.name,
-                price: req.body.price,
-                phonenumber: req.body.phonenumber,
-                location: req.body.location,
-                image: req.body.image,
-                category: req.body.category
-            };
+
             console.log(restaurang);
 
             let restaurant = await db.query(sql, restaurang, (err, result) => {

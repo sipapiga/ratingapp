@@ -16,13 +16,13 @@ router.get('/restaurant/:id', (req, res) => {
         average = star / rows.length;
         if (!isNaN(average)) {
             let sqlrating = 'UPDATE restaurang SET rating = ? WHERE id = ?;'
-            db.query(sqlrating, [average, req.params.id], function (err, rows) {
+            db.query(sqlrating, [average.toFixed(2), req.params.id], function (err, rows) {
                 if (err) throw err;
                 console.log(rows);
             });
 
         }
-        res.status(200).render('readreview', { title: 'home', data: rows, rating: average, star: star });
+        res.status(200).render('readreview', { title: 'home', data: rows, rating: average.toFixed(2), star: star });
     });
 });
 

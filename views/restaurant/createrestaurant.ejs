@@ -6,7 +6,7 @@
         <h2 class="page-header pt-4">Add a restaurant</h2>
         <%- include ('../partials/messages') %>
 
-        <form method="post" action="/restaurants">
+        <form method="post" action="/restaurants" enctype="multipart/form-data">
             <div class="form-group">
                 <label>Restaurant Name</label>
                 <input name="name" type="text" placeholder="Espresso House" class="form-control">
@@ -25,12 +25,7 @@
             </div>
             <div class="form-group">
                 <label>Image</label>
-                <input name="image" type="text"
-                    placeholder="https://s3-media0.fl.yelpcdn.com/bphoto/SrS45KHpZ942yCdWMoITzA/o.jpg"
-                    class="form-control">
-                <small class="form-text text-muted">
-                    Obs: only url!!!
-                </small>
+                <input name="image" type="file" class="form-control">
             </div>
             <div class="form-group">
                 <label>Category</label>

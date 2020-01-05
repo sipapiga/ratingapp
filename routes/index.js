@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
     let sqldata = 'SELECT * FROM restaurang';
     db.query(sqldata, (err, result) => {
         if (err) throw err;
+        //  res.status(200).send(result);
         res.render('index', { datas: result, title: 'home' });
     })
 });
@@ -17,6 +18,7 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
     let sqldata = 'SELECT * FROM restaurang';
     db.query(sqldata, (err, result) => {
         if (err) throw err;
+        // res.status(200).send(result);
         res.render('index', { datas: result, title: 'home' });
     })
 
