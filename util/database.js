@@ -41,7 +41,7 @@ db.query(sqltable, (err, result) => {
     console.log(result);
 });
 
-let sqltableReview = 'CREATE TABLE IF NOT EXISTS review(id int(5) NOT NULL AUTO_INCREMENT,name varchar(255),review varchar(255) NOT NULL,restaurang_id int ,rating int(20) NOT NULL, PRIMARY KEY (id))';
+let sqltableReview = 'CREATE TABLE IF NOT EXISTS review(review_id int(5) NOT NULL AUTO_INCREMENT,name varchar(255),review varchar(255) NOT NULL,restaurang_id int ,rating int(20) NOT NULL, PRIMARY KEY (id))';
 db.query(sqltableReview, (err, result) => {
     if (err) throw err;
     console.log(result);
