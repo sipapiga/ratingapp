@@ -61,8 +61,8 @@ router.post('/register', async (req, res) => {
 
             res.status(201).send(saveUser);
             req.flash('success_msg', 'You are now registered and can login');
-            res.location('/user/login');
-            res.redirect('/user/login');
+            res.location('/users/login');
+            res.redirect('/users/login');
         } catch (error) {
             res.status(400).send({ error: error.details[0].message });
         }

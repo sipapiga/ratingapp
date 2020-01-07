@@ -18,6 +18,7 @@ const indexRoutes = require("./routes/index");
 const usersRoutes = require('./routes/users');
 const reviewRoutes = require('./routes/review');
 const restaurantRoutes = require('./routes/restaurant');
+const adminRoutes = require("./routes/admin");
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -57,6 +58,7 @@ app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/restaurants', restaurantRoutes);
+app.use('/admin', adminRoutes);
 
 const port = process.env.PORT || 3000;
 

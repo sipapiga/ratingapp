@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const db = require('../util/database');
+const isAuth = require('../middleware/is_auth');
 
 router.get('/', (req, res) => {
     //get restautant data from db
@@ -13,7 +14,8 @@ router.get('/', (req, res) => {
     })
 });
 
-router.get('/dashboard', ensureAuthenticated, (req, res) => {
+router.get('/dashboard', isAuth, (req, res) => {
+    console.log(req.user);
     //get restautant data from db
     let sqldata = 'SELECT * FROM restaurang';
     db.query(sqldata, (err, result) => {
@@ -23,12 +25,5 @@ router.get('/dashboard', ensureAuthenticated, (req, res) => {
     })
 
 });
-
-function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/user/login');
-}
 
 module.exports = router;

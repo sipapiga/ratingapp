@@ -47,7 +47,7 @@ db.query(sqltableReview, (err, result) => {
     console.log(result);
 });
 
-let sqltableUser = 'CREATE TABLE IF NOT EXISTS user(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,email varchar(255) NOT NULL, username varchar(255) , password  varchar(255)  NOT NULL,PRIMARY KEY (id))';
+let sqltableUser = 'CREATE TABLE IF NOT EXISTS user(id int(5) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL,email varchar(255) NOT NULL, username varchar(255) , password  varchar(255)  NOT NULL,is_admin int(3) DEFAULT 1,PRIMARY KEY (id))';
 db.query(sqltableUser, (err, result) => {
     if (err) throw err;
     console.log(result);

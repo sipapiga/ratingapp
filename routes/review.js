@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const db = require('../util/database');
+const isAuth = require('../middleware/is_auth');
 //Read
 router.get('/restaurant/:id', (req, res) => {
     let star = 0;
@@ -26,15 +27,15 @@ router.get('/restaurant/:id', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
-    db.query('select * from restaurang where id = ? ', [req.params.id], function (err, rows) {
+router.get('/:id', isAuth, (req, res) => {
+    db.query('SELECT * FROM restaurang WHERE id = ? ', [req.params.id], function (err, rows) {
         if (err) throw err;
         res.status(200).render('review', { title: 'home', data: rows[0], user: req.user });
     });
 
 });
 //Create
-router.post('/:id', async (req, res) => {
+router.post('/:id', isAuth, async (req, res) => {
     console.log(req.body);
     let sql = 'INSERT INTO review SET ?';
     const review = {

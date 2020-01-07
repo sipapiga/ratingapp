@@ -1,37 +1,71 @@
 $(document).ready(function () {
+    const deleteMsgBtn = document.querySelectorAll('.deleteBtn');
+    const editMsgBtn = document.querySelectorAll('.editBtn');
 
-    axios
-        .get('http://localhost:3000/')
-        .then(res => console.log(res))
-        .catch(err => console.error(err));
+    editMessage();
+    deleteMessage();
 
-    function showRestaurang(res) {
-        console.log(res.data);
-
-        for (data of res.data) {
-            document.getElementById('res').innerHTML += `
-            <li class="lists" id="${data.id} ">
-                <p class="image"><img src="${data.image}" width="150px"></p>
-                    <div class="list-details">
-                        <h3><a href="/restaurang/${data.id}"> ${data.name}</a></h3>
-                        <p class=" lead"><strong>rating :</strong> ${data.rating}</p>
-                        <div class="stars-outer">
-                                <div class="stars-inner"></div>
-                            </div>
-                        <p class=" lead pt-2"><strong>Price :</strong> ${data.price}</p>
-                        <p class=" lead"><strong>Category :</strong>${data.category}</p>
-                    </div>
-                    <div class="list-details  pl-5 ">
-                        <p class="lead"><strong>Location :</strong>${data.location}</p>
-                        <p class=" lead"><strong>Phone :</strong> ${data.phonenumber}</p>
-                    </div>
-                     <div class="listing-bottom align-bottom">
-                        <button type="button" class="btn btn-info pointer" data-toggle="tooltip" data-placement="top" title="Please login to write a review." tabindex="-1" disabled>Write a Review</button>
-                    </div> 
-            </li>
-            <hr>`;
+    function editMessage() {
+        for (let editbtn of editMsgBtn) {
+            if (editbtn != null) {
+                let editId = editbtn.getAttribute('id');
+                editbtn.addEventListener('click', function () {
+                    console.log('click');
+                    $('#editModal').modal('show');
+                    axios({
+                        method: 'get',
+                        url: 'http://localhost:3000/admin/' + editId + '/edit'
+                    })
+                        .then(res => appendData(res))
+                        .catch(err => console.error(err));
+                    document.getElementById('editForm').action = `/admin/edit/${editId}`;
+                });
+            }
         }
+    }
+    function appendData(data) {
+        console.log(data.data[0]);
+        document.getElementById('name').value = data.data[0].name;
+        document.getElementById('location').value = data.data[0].location;
+        document.getElementById('price').value = data.data[0].price;
+        document.getElementById('phonenumber').value = data.data[0].phonenumber;
+        document.getElementById('category').value = data.data[0].category;;
 
     }
 
+    function deleteMessage() {
+        for (let deletebtn of deleteMsgBtn) {
+            if (deletebtn != null) {
+                deletebtn.addEventListener('click', function () {
+                    let msgId = deletebtn.getAttribute('id');
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            axios({
+                                method: 'delete',
+                                url: 'http://localhost:3000/admin/delete/' + msgId
+                            })
+                                .then(res => console.log(res))
+                                .catch(err => console.error(err));
+                        }
+                    })
+                    setTimeout(function () {
+                        window.location.href = "http://localhost:3000/admin"
+                    }, 1500);
+                });
+            }
+        }
+    }
 });
