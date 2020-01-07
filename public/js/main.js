@@ -14,7 +14,7 @@ $(document).ready(function () {
                     $('#editModal').modal('show');
                     axios({
                         method: 'get',
-                        url: 'http://localhost:3000/admin/' + editId + '/edit'
+                        url: 'https://ratingsipr1901.herokuapp.com/admin/' + editId + '/edit'
                     })
                         .then(res => appendData(res))
                         .catch(err => console.error(err));
@@ -55,14 +55,14 @@ $(document).ready(function () {
                             )
                             axios({
                                 method: 'delete',
-                                url: 'http://localhost:3000/admin/delete/' + msgId
+                                url: 'https://ratingsipr1901.herokuapp.com/admin/delete/' + msgId
                             })
                                 .then(res => console.log(res))
                                 .catch(err => console.error(err));
                         }
                     })
                     setTimeout(function () {
-                        window.location.href = "http://localhost:3000/admin"
+                        window.location.href = "https://ratingsipr1901.herokuapp.com/admin"
                     }, 1500);
                 });
             }
