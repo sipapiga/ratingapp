@@ -108,7 +108,7 @@ $(document).ready(function () {
 
                 axios({
                     method: 'post',
-                    url: 'http://localhost:3000/reviews/' + id,
+                    url: 'https://ratingsipr1901.herokuapp.com/reviews/' + id,
                     data: {
                         clickedValue: clickedValue,
                         sender: reviewer,
@@ -124,7 +124,7 @@ $(document).ready(function () {
             console.log(reviewValue);
             event.preventDefault();
             setTimeout(function () {
-                window.location.href = "http://localhost:3000/reviews/restaurant/" + id
+                window.location.href = "https://ratingsipr1901.herokuapp.com/reviews/restaurant/" + id
             }, 1500);
 
         })
