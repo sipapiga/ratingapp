@@ -20,6 +20,9 @@ html {
 .pointer{
     cursor: not-allowed;
 }
+.dropdown-category {
+    cursor: pointer;
+ }
 .stars-outer {
     position: relative;
     display: inline-block;

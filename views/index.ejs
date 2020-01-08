@@ -12,8 +12,12 @@
                     Filter
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/restaurants/best-resting">Best rating</a>
-                    <a class="dropdown-item" href="/restaurants/category">Category</a>
+                    <a class="dropdown-item" href="/restaurants/best-resting"><strong>Top Rating</strong> </a>
+                    <div class="dropdown-divider"></div>
+                    <p class="dropdown-item" href=""><strong>Category</strong> </p>
+                    <% for(data of categories) { %>
+                    <p class="dropdown-item dropdown-category"><%= data %></p>
+                    <% } %>
                 </div>
                 <div class="creteBtn pl-4">
                     <% if(user){%>
@@ -30,11 +34,12 @@
                 <p class="image"><img src="/uploads/<%= data.image %>" width="150px"></p>
                 <div class="list-details">
                     <h3><a href="/reviews/restaurant/<%= data.id %>"><%= data.name %></a> </h3>
-                    <!--    <p class=" lead"><strong>rating :</strong> <%= data.rating %></p> -->
+
                     <div class="stars-outer">
-                        <div class="stars-inner" style='width:<%= (data.rating * 10 / 10) * 20 %>%''></div>
+                        <div class=" stars-inner" id="star<%= data.id %>" data-score=<%= data.rating %>
+                            style='width:<%= (data.rating * 10 / 10) * 20 %>%'></div>
                     </div>
-                    <span class="star" data-score=${data.rating}></span>
+
                     <p class=" lead pt-2"><strong>Price :</strong> <%= data.price %></p>
                     <p class=" lead"><strong>Category :</strong> <%= data.category %></p>
                 </div>

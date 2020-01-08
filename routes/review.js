@@ -21,18 +21,20 @@ router.get('/restaurant/:id', (req, res) => {
                 if (err) throw err;
                 console.log(rows);
             });
-
         }
         res.status(200).render('readreview', { title: 'home', data: rows, rating: average.toFixed(2), star: star });
     });
 });
 
-router.get('/:id', isAuth, (req, res) => {
-    db.query('SELECT * FROM restaurang WHERE id = ? ', [req.params.id], function (err, rows) {
-        if (err) throw err;
-        res.status(200).render('review', { title: 'home', data: rows[0], user: req.user });
-    });
-
+router.get('/:id', isAuth, async (req, res) => {
+    try {
+        await db.query('SELECT * FROM restaurang WHERE id = ? ', [req.params.id], function (err, rows) {
+            if (err) throw err;
+            res.status(200).render('review', { title: 'home', data: rows[0], user: req.user });
+        });
+    } catch (error) {
+        res.status(400).send({ error: error.details[0].message });
+    }
 });
 //Create
 router.post('/:id', isAuth, async (req, res) => {
@@ -54,8 +56,6 @@ router.post('/:id', isAuth, async (req, res) => {
     } catch (error) {
         res.status(400).send({ error: error.details[0].message });
     }
-
-    //res.redirect(`/restaurang/${req.params.id}`);
 });
 
 

@@ -2,7 +2,7 @@ $(document).ready(function () {
     const rate = document.querySelector('#rate');
     const review = document.querySelector('#review');
     const average = document.querySelector('#star');
-    const averageUser = document.querySelectorAll('.star');
+
     let starPercentageRounded = 0;
 
     if (average !== null) {
@@ -108,7 +108,7 @@ $(document).ready(function () {
 
                 axios({
                     method: 'post',
-                    url: 'https://ratingsipr1901.herokuapp.com/reviews/' + id,
+                    url: 'http://localhost:3000/reviews/' + id,
                     data: {
                         clickedValue: clickedValue,
                         sender: reviewer,
@@ -124,7 +124,7 @@ $(document).ready(function () {
             console.log(reviewValue);
             event.preventDefault();
             setTimeout(function () {
-                window.location.href = "https://ratingsipr1901.herokuapp.com/reviews/restaurant/" + id
+                window.location.href = "http://localhost:3000/reviews/restaurant/" + id
             }, 1500);
 
         })

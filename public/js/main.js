@@ -1,7 +1,18 @@
 $(document).ready(function () {
     const deleteMsgBtn = document.querySelectorAll('.deleteBtn');
     const editMsgBtn = document.querySelectorAll('.editBtn');
+    const getDropdownItem = document.querySelectorAll('.dropdown-category');
 
+    for (let category of getDropdownItem) {
+        if (category != null) {
+            let name = category.innerHTML;
+
+            category.addEventListener('click', function () {
+                console.log(name);
+                window.location.href = 'http://localhost:3000/restaurants/category/' + name;
+            });
+        }
+    }
     editMessage();
     deleteMessage();
 
@@ -14,7 +25,7 @@ $(document).ready(function () {
                     $('#editModal').modal('show');
                     axios({
                         method: 'get',
-                        url: 'https://ratingsipr1901.herokuapp.com/admin/' + editId + '/edit'
+                        url: 'http://localhost:3000/admin/' + editId + '/edit'
                     })
                         .then(res => appendData(res))
                         .catch(err => console.error(err));
@@ -55,17 +66,19 @@ $(document).ready(function () {
                             )
                             axios({
                                 method: 'delete',
-                                url: 'https://ratingsipr1901.herokuapp.com/admin/delete/' + msgId
+                                url: 'http://localhost:3000/admin/delete/' + msgId
                             })
                                 .then(res => console.log(res))
                                 .catch(err => console.error(err));
                         }
                     })
                     setTimeout(function () {
-                        window.location.href = "https://ratingsipr1901.herokuapp.com/admin"
+                        window.location.href = "http://localhost:3000/admin"
                     }, 1500);
                 });
             }
         }
     }
+
+
 });
