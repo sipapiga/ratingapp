@@ -48,10 +48,10 @@ router.post("/edit/:id", isAuth, isAdmin, async (req, res) => {
         category: req.body.category
     };
     try {
-        await db.query(sql, restaurang, [req.params.id], function (err, rows) {
+        await db.query(sql, [restaurang, req.params.id], function (err, rows) {
             console.log(rows);
             if (err) throw err;
-            res.status(200).send(rows);
+            res.redirect("/admin");
         });
     } catch (err) {
         res.status(500).send({ message: err.message });

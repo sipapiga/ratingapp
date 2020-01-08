@@ -53,7 +53,7 @@ router.post('/register', async (req, res) => {
 
             console.log(user);
 
-            let saveUser = db.query(sql, user, (err, result) => {
+            let saveUser = await db.query(sql, user, (err, result) => {
                 if (err) throw err;
                 console.log(result);
                 //  res.send('Restaurang inserted...')
