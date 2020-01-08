@@ -9,7 +9,7 @@ $(document).ready(function () {
 
             category.addEventListener('click', function () {
                 console.log(name);
-                window.location.href = 'https://ratingsipr1901.herokuapp.com/restaurants/category/' + name;
+                window.location.href = 'http://localhost:3000/restaurants/category/' + name;
             });
         }
     }
@@ -25,7 +25,7 @@ $(document).ready(function () {
                     $('#editModal').modal('show');
                     axios({
                         method: 'get',
-                        url: 'https://ratingsipr1901.herokuapp.com/admin/' + editId + '/edit'
+                        url: 'http://localhost:3000/admin/' + editId + '/edit'
                     })
                         .then(res => appendData(res))
                         .catch(err => console.error(err));
@@ -66,14 +66,14 @@ $(document).ready(function () {
                             )
                             axios({
                                 method: 'delete',
-                                url: 'https://ratingsipr1901.herokuapp.com/admin/delete/' + msgId
+                                url: 'http://localhost:3000/admin/delete/' + msgId
                             })
                                 .then(res => console.log(res))
                                 .catch(err => console.error(err));
                         }
                     })
                     setTimeout(function () {
-                        window.location.href = "https://ratingsipr1901.herokuapp.com/admin"
+                        window.location.href = "http://localhost:3000/admin"
                     }, 1500);
                 });
             }

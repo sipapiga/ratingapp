@@ -50,6 +50,11 @@ body {
   font-weight: 900;
   color: #f8ce0b;
 }
+.dropdown-height{
+    height: 250px;
+  max-height: 250px;
+  overflow-y: scroll;  
+}
 .footer {
   position: absolute;
   bottom: 0;
