@@ -48,19 +48,13 @@ router.post('/register', async (req, res) => {
                 username: username,
                 password: hashPass
             };
-
-            console.log(user);
-
-            let saveUser = await db.query(sql, user, (err, result) => {
+            await db.query(sql, user, (err, result) => {
                 if (err) throw err;
-                console.log(result);
-                //  res.send('Restaurang inserted...')
-            });
 
-            res.status(201).send(saveUser);
+            });
             req.flash('success_msg', 'You are now registered and can login');
             res.location('/users/login');
-            res.status(200).redirect('/users/login');
+            res.status(201).redirect('/users/login');
         } catch (error) {
             res.status(400).send({ error: error.details[0].message });
         }

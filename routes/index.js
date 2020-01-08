@@ -10,16 +10,7 @@ router.get('/', async (req, res) => {
     try {
         await db.query(sqldata, (err, result) => {
             if (err) throw err;
-            //  res.status(200).send(result);
-
-            /*    let categoryArr = result.map(function (restaurang) {
-                   return restaurang.category;
-               })
-   
-               const category = categoryArr.filter(function (value, index) {
-                   return (categoryArr.indexOf(value) == index);
-               });
-    */
+         
             res.render('index', { datas: result, title: 'home', categories: getCategory(result) });
         });
     } catch (error) {

@@ -23,8 +23,6 @@ $(document).ready(function () {
     });
     $('#1_star').on('click', function () {
         clickedValue = 1;
-
-        console.log(clickedValue)
     });
 
     $('#2_star').click(function () {
@@ -39,7 +37,6 @@ $(document).ready(function () {
     $('#2_star').on('click', function () {
         clickedValue = 2;
 
-        console.log(clickedValue)
     })
     $('#3_star').click(function () {
         $('#1_star').css('color', 'orange');
@@ -51,8 +48,6 @@ $(document).ready(function () {
     });
     $('#3_star').on('click', function () {
         clickedValue = 3;
-
-        console.log(clickedValue)
     })
 
     $('#4_star').click(function () {
@@ -66,7 +61,6 @@ $(document).ready(function () {
     $('#4_star').on('click', function () {
         clickedValue = 4;
 
-        console.log(clickedValue)
     })
 
     $('#5_star').click(function () {
@@ -79,19 +73,16 @@ $(document).ready(function () {
     });
     $('#5_star').on('click', function () {
         clickedValue = 5;
-
-        console.log(clickedValue)
     });
 
 
     if (rate !== null) {
         rate.addEventListener('click', function (event) {
+            event.preventDefault();
 
             const reviewValue = review.value;
             const reviewer = document.querySelector('#reviewer').value;
             const id = document.querySelector('#id').value;
-            console.log(reviewer);
-            console.log(reviewValue);
 
             let valid = true;
 
@@ -120,9 +111,6 @@ $(document).ready(function () {
             } else {
                 return false;
             }
-
-            console.log(reviewValue);
-            event.preventDefault();
             setTimeout(function () {
                 window.location.href = "http://localhost:3000/reviews/restaurant/" + id
             }, 1500);

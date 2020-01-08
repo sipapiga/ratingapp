@@ -32,7 +32,7 @@
             <% for(data of datas) { %>
             <li class="lists" id="<%= data.id %>">
                 <p class="image"><img src="/uploads/<%= data.image %>" width="150px"></p>
-                <div class="list-details">
+                <div class="list-details pl-4">
                     <h3><a href="/reviews/restaurant/<%= data.id %>"><%= data.name %></a> </h3>
 
                     <div class="stars-outer">
@@ -48,7 +48,7 @@
                     <p class=" lead"><strong>Phone :</strong> <%= data.phonenumber %></p>
                 </div>
                 <% if(user){%>
-                <div class="listing-bottom align-bottom">
+                <div class="listing-bottom align-bottom pl-3">
                     <a href="/reviews/<%= data.id %>" class="btn btn-info" role="buttom">Write a Review</a>
                 </div>
                 <% }else{ %>
