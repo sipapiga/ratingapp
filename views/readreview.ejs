@@ -71,7 +71,7 @@
                             <h1>Rating</h1>
                             <div class="userRating">
                                 <div class="stars-outer">
-                                    <div class="stars-inner" style="width: <%= (val.userrating * 10 / 10) * 20 %>%">
+                                    <div class="stars-inner" style="width:<%= ((val.userrating/5) * 100 / 10) * 10 %>%">
                                     </div>
                                 </div>
                                 <span class="star" data-score="<%= val.userrating %>"><%= val.userrating %></span>

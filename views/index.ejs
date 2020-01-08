@@ -37,7 +37,7 @@
 
                     <div class="stars-outer">
                         <div class=" stars-inner" id="star<%= data.id %>" data-score=<%= data.rating %>
-                            style='width:<%= (data.rating * 10 / 10) * 20 %>%'></div>
+                            style='width:<%= ((data.rating/5) * 100 / 10) * 10 %>%'></div>
                     </div>
 
                     <p class=" lead pt-2"><strong>Price :</strong> <%= data.price %></p>

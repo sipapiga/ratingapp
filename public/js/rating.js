@@ -3,11 +3,13 @@ $(document).ready(function () {
     const review = document.querySelector('#review');
     const average = document.querySelector('#star');
 
+    let startotal = 5;
     let starPercentageRounded = 0;
 
     if (average !== null) {
-        let starPercentage = average.dataset.score * 10;
-        starPercentageRounded = `${Math.round(starPercentage / 10) * 20}%`;
+        let starPercentage = (average.dataset.score / startotal) * 100;
+        starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+        console.log(starPercentage);
         document.querySelector('.stars-inner').style.width = starPercentageRounded;
     }
 
@@ -99,7 +101,7 @@ $(document).ready(function () {
 
                 axios({
                     method: 'post',
-                    url: 'https://ratingsipr1901.herokuapp.com/reviews/' + id,
+                    url: 'http://localhost:3000/reviews/' + id,
                     data: {
                         clickedValue: clickedValue,
                         sender: reviewer,
@@ -112,7 +114,7 @@ $(document).ready(function () {
                 return false;
             }
             setTimeout(function () {
-                window.location.href = "https://ratingsipr1901.herokuapp.com/reviews/restaurant/" + id
+                window.location.href = "http://localhost:3000/reviews/restaurant/" + id
             }, 1500);
 
         })
